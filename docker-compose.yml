@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  upload-images:
+    image: bitnami/postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=upload-images
+    volumes:
+      - pgdata:/bitnami/postgresql
+    
+  redis:
+    image: redis:7
+    ports: 
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+volumes:
+  pgdata:
+  redisdata:
